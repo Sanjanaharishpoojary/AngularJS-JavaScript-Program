@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <script src="lib.js">
+        </script>
+    </head>
+        <body ng-app="myapp" ng-controller="myctrl">
+            <h1><u>SHOPPING LIST:</u></h1>
+            <ul style="list-style-type: circle;"  ng-repeat="x in ar">
+                <li>
+                    {{x}}
+                    <span style="color: blue;" ng-click="removeitem($index)">x</span>
+                </li>
+            </ul>
+            <input ng-model="addme">
+            <button ng-click="additem()">add</button>
+            <p>{{errortext}}</p>
+        
+        <script>
+            var app=angular.module("myapp",[]);
+            app.controller('myctrl',function($scope){
+                $scope.ar=["lays","complan","kitkat","Bournvita","Parle-G","Dark Fantasy","Fanta","MoonFills"];
+                $scope.additem=function()
+                {
+                    $scope.errortext='';
+                    if(!$scope.addme){return;}
+                    if($scope.ar.indexOf($scope.addme)==-1)
+                    {
+                        $scope.ar.push($scope.addme);
+                    }
+                    else
+                    {
+                        $scope.errortext="item already exists";
+                    }
+                }
+
+                $scope.removeitem=function(x)
+                {
+                    $scope.errortext='';
+                    $scope.ar.splice(x,1);
+                }
+            });
+        </script>
+    </body>
+</html>

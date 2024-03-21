@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <script src="lib.js"></script>
+    </head>
+    <body align="center" >
+        <div ng-app="myapp" ng-controller="myctrl">        
+        <h1>FULL NAME</h1>
+        First Name: <input type="text" ng-model="firstname"><br><br>
+        Last Name: <input type="text" ng-model="lastname"><br><br>
+        Fullname: {{firstname}} {{lastname}}
+        </div>
+        <script>
+            var app=angular.module('myapp',[]);
+            app.controller('myctrl',function($scope)
+            {
+                $scope.firstname="Mickey"
+                $scope.lastname="Mouse"
+            });
+        </script>
+    </body>
+</html>
