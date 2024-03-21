@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script src="lib.js"></script>
+    </head>
+    <body ng-app="myapp" ng-controller="myctrl">
+        <h1>student details</h1>
+       
+        <input type="text" ng-model="name" placeholder="name">
+        <input type="number" ng-model="usn" placeholder="usn">
+        <input type="number" ng-model="cgpa" placeholder="cgpa">
+        <button type="submit" ng-click="sub()  ">submit</button><br><br>
+       
+        <table border="3px" style="width: 60%; border-collapse: collapse;">
+            <tr>
+                <td>name</td>
+                <td>usn</td>
+                <td>cgpa</td>
+            </tr>
+            <tr ng-repeat="x in students">
+                <td>{{x.name}}</td>
+                <td>{{x.usn}}</td>
+                <td>{{x.cgpa}}</td>
+            </tr>
+        </table>
+        <br>
+        <fieldset>number of students : {{students.length}}</fieldset><br><br>
+        <script>
+            var app=angular.module('myapp',[]);
+            app.controller('myctrl',function($scope)
+            {
+                $scope.students=[];
+                $scope.sub=function()
+                {
+                    if($scope.name&&$scope.usn&&$scope.cgpa)
+                    {
+                        var usnexists= $scope.students.some(
+                           function(students)
+                           {
+                                return $scope.usn===students.usn;
+                           } 
+                        )
+                    }
+
+                    if(!usnexists)
+                        $scope.students.push({name:$scope.name ,usn:$scope.usn ,cgpa:$scope.cgpa});
+
+                    else
+                        alert("usn already exists");
+                }
+            });
+        </script>
+    </body>
+</html>
