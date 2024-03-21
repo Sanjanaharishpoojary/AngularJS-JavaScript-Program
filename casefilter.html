@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <script src="lib.js">
+        </script>
+    </head>
+    <body ng-app="myapp" ng-controller="myctrl">
+        <h1>UPPERCASE</h1>
+        <ul>
+            <li ng-repeat="stu in students">
+                name: {{stu.name|uppercase}}, grade: {{stu.grade|uppercase}}
+
+            </li>
+            <h1>LOWERCASE</h1>
+        <ul>
+            <li ng-repeat="stu in students">
+                name: {{stu.name|lowercase}}, grade: {{stu.grade|lowercase}}
+
+            </li>
+        </ul>
+
+        <script>
+            var app=angular.module('myapp',[]);
+            app.controller('myctrl',function($scope)
+            {
+                $scope.students=[{name:'sanj',grade:'A'},{name:'sAksHi',grade:'f'}];
+            });
+        </script>
+    </body>
+</html>
