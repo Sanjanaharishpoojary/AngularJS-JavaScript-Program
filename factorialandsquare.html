@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script src="lib.js"></script>
+    </head>
+    <body ng-app="myapp" ng-controller="myctrl" align="center" >
+        <h1><Fieldset align="center">FACTORIAL AND SQUARE OF A number</Fieldset></h1>
+        <input style="width: 30%;"  type="number" ng-model="f" placeholder="enter number"><br>
+        <br><button ng-click="fact()" style="background-color: blueviolet;"><fieldset><b>Factorial</b></fieldset></button>
+        &nbsp;&nbsp; {{rf}} &nbsp;&nbsp;
+        <button ng-click="sq()" style="background-color: darkmagenta;"><fieldset> <b>Square</b></fieldset></button>
+        &nbsp;&nbsp; {{rs}}
+
+        <script>
+            var app=angular.module('myapp',[]);
+            app.controller('myctrl',function($scope)
+            {
+                $scope.fact=function()
+                {
+                    if($scope.f==0 || $scope.f==1)
+                        $scope.rf=1;
+                    else
+                    {
+                        var x=1;
+                        for(var i=2;i<=$scope.f;i++)
+                        x=x*i;
+                        $scope.rf=x;
+                    }
+                }
+                $scope.sq=function()
+                {
+                    $scope.rs=$scope.f*$scope.f;
+                }
+            });
+        </script>
+    </body>
+</html>
