@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script src="lib.js">
+        </script>
+    </head>
+    <body ng-app="myapp" ng-controller="myctrl" align="center">
+        <h1>TO DO LIST</h1>
+        <input type="text" ng-model="ntask" placeholder="enter task">
+        <button type="submit" ng-click="add()">Add Task</button><br><br><br>
+
+        <table border="2" align="center" style="width: 30%;text-align: center; ">
+            <tr>
+                <th>Task</th>
+                <th colspan="2">Action</th>
+            </tr>
+            <tr ng-repeat="i in task">
+                <td>{{i}}</td>
+                <td><button ng-click="edit($index)">Edit</button></td>
+                <td><button ng-click="delete($index)">Delete</button></td>
+            </tr>
+        </table>
+
+        <script>
+            var app=angular.module('myapp',[]);
+            app.controller('myctrl',function($scope)
+            {
+                $scope.task=["eat","sleep","study","dance","yoga","meditation"];
+                $scope.delete=function(index)
+                {
+                    $scope.task.splice(index,1);
+                }
+                $scope.add=function()
+                {
+                    $scope.task.push($scope.ntask);
+                }
+                $scope.edit=function(index)
+                {
+                    var updatedtask=prompt("enter new task");
+                    if(updatedtask!=null)
+                    $scope.task.splice(index,1,updatedtask);
+                }
+            });
+        </script>
+    </body>
+</html>
