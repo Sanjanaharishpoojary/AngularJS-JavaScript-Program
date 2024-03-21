@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script src="lib.js">
+
+        </script>
+    </head>
+    <body ng-app="myapp" ng-controller="myctrl">
+        <div>
+            default date:{{today|date}}<br>
+            short date:{{today|date:'shortDate'}}<br>
+            medium date:{{today|date:'mediumDate'}}<br>
+            Full date:{{today|date:'fullDate'}}<br>
+            custom date:{{today|date:'dd/MM/yyyy hh:mm:ss'}}
+        </div>
+        <script>
+            var app=angular.module("myapp",[]);
+            app.controller("myctrl",function($scope)
+            {
+                $scope.today=new Date();
+            });
+        </script>
+    </body>
+</html>
