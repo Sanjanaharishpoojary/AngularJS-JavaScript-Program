@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <script src="lib.js">
+        </script>
+    </head>
+    <body ng-app="myapp" ng-controller="myctrl" align="center">
+        <h1>Employee Details</h1>
+        <input type="text" ng-model="name" placeholder="enter name">
+        <input type="number" ng-model="age" placeholder="enter age"><br><br>
+        <button ng-click="add()">Add</button>
+
+        <br><br><table border="2" align="center" style="width: 45%;text-align: center;">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th colspan="2">Action</th>
+            </tr>
+            <tr ng-repeat="x in students">
+                <td>{{x.name}}</td>
+                <td>{{x.age}}</td>
+                <td><button ng-click="edit(x)">Edit</button></td>
+                <td><button ng-click="delete($index)">Delete</button></td>
+            </tr>
+        </table>
+        <script>
+            var app=angular.module('myapp',[]);
+            app.controller('myctrl',function($scope)
+            {
+                $scope.students=[{name:"josua" , age:"30"},{name:"mary",age:"35"}];
+                $scope.add=function()
+                {
+                    if ($scope.name && $scope.age)
+                    $scope.students.push({name:$scope.name,age:$scope.age});
+                }
+                $scope.edit=function(x)
+                {
+                    var index=$scope.students.indexOf(x);
+                    var nname=prompt("enter new name",x.name);
+                    var nage=prompt("enter new age",x.age);
+                    if ($scope.nage!==null && $scope.nname!==null)
+                    var nnew={name:nname,age:nage};
+                $scope.students.splice(index,1,nnew);
+
+                }
+                $scope.delete=function(index)
+                {
+                    $scope.students.splice(index,1);
+                }
+            });
+        </script>
+    </body>
+</html>
